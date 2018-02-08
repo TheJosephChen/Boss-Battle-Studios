@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour 
+{
 
 	public float speed;
 	public float height;
 	public float runSpeed;
+	public float floorHeight;
 
 	private Rigidbody rb;
 	private float runMove;
@@ -25,18 +27,15 @@ public class PlayerController : MonoBehaviour {
 
 		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
 
-		// check if running
-		if (Input.GetKey (KeyCode.LeftShift)) {
-			rb.AddForce (movement * runMove);
-		} else {
-			// not running
-			rb.AddForce (movement * speed);
-		}
+		// check if running, else normal speed
+		rb.AddForce (Input.GetKey (KeyCode.LeftShift) ? movement * runMove : movement * speed);
 
 		// jumping
-		//TODO: check if player is already jumping
-		if (Input.GetKeyDown (KeyCode.Space) && transform.position.y == 0.5) {
+		//TODO: handle changing floor Heights
+		if (Input.GetKeyDown (KeyCode.Space) && transform.position.y == floorHeight) 
+		{
 			rb.AddForce (Vector3.up * height);
 		}
+
 	}
 }
