@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour {
 
 		// jumping
 		//TODO: check if player is already jumping
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetKeyDown (KeyCode.Space) && transform.position.y == 0.5) {
 			rb.AddForce (Vector3.up * height);
 		}
 	}
