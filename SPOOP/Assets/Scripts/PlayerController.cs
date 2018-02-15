@@ -4,38 +4,48 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour 
 {
-
 	public float speed;
 	public float height;
 	public float runSpeed;
 	public float floorHeight;
 
 	private Rigidbody rb;
-	private float runMove;
+	private bool isGrounded;
 
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody>();
-		runMove = speed * runSpeed;
+		isGrounded = true;
 	}
 
-	void FixedUpdate ()
+	void Update ()
 	{
 		// regular player movement
 		float moveHorizontal = Input.GetAxis ("Horizontal");
 		float moveVertical = Input.GetAxis ("Vertical");
 
-		Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
+		float moveSpeed = speed;
+		if (Input.GetKey (KeyCode.LeftShift))
+			moveSpeed = moveSpeed * runSpeed;
 
-		// check if running, else normal speed
-		rb.AddForce (Input.GetKey (KeyCode.LeftShift) ? movement * runMove : movement * speed);
+		float dz = moveVertical * moveSpeed * Time.deltaTime;
+		float dx = moveHorizontal * moveSpeed * Time.deltaTime;
+		transform.position = new Vector3(transform.position.x + dx, transform.position.y, transform.position.z + dz);
 
 		// jumping
-		//TODO: handle changing floor Heights
-		if (Input.GetKeyDown (KeyCode.Space) && transform.position.y == floorHeight) 
+		if (Input.GetKey(KeyCode.Space) && 
+			isGrounded)
 		{
 			rb.AddForce (Vector3.up * height);
+			isGrounded = false;
 		}
+	}
 
+	void OnCollisionEnter(Collision other)
+	{
+		if (other.gameObject.tag == "Ground")
+		{
+			isGrounded = true;
+		}
 	}
 }
