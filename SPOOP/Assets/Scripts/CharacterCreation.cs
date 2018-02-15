@@ -13,7 +13,8 @@ public class CharacterCreation : MonoBehaviour
 	void Start () 
 	{
 		models = new List<GameObject> ();
-		foreach (Transform t in transform) {
+		foreach (Transform t in transform) 
+		{
 			models.Add (t.gameObject);
 			t.gameObject.SetActive (false);
 		}
