@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 54785538548559996}
   m_Layer: 0
   m_Name: Blue Sphere
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +114,6 @@ MonoBehaviour:
   speed: 5
   height: 100
   runSpeed: 2
-  floorHeight: 0
 --- !u!135 &135065555177095098
 SphereCollider:
   m_ObjectHideFlags: 1

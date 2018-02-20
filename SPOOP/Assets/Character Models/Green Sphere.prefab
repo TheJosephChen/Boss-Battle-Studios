@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 54824000417732596}
   m_Layer: 0
   m_Name: Green Sphere
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +114,6 @@ MonoBehaviour:
   speed: 5
   height: 200
   runSpeed: 2
-  floorHeight: 0
 --- !u!135 &135130356435136898
 SphereCollider:
   m_ObjectHideFlags: 1
