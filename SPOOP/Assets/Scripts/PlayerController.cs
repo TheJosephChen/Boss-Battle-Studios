@@ -7,7 +7,6 @@ public class PlayerController : MonoBehaviour
 	public float speed;
 	public float height;
 	public float runSpeed;
-	public float floorHeight;
 
 	private Rigidbody rb;
 	private bool isGrounded;
