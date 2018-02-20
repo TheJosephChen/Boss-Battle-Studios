@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// attach script to main camera
 public class CameraController : MonoBehaviour {
 
+	// object to follow (player)
 	public GameObject player;
 
 	private Vector3 offset;
