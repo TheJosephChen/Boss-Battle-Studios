@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -155,6 +155,11 @@ Prefab:
     - target: {fileID: 1035334117661422, guid: 08bd92310e57dec4cb1e8364209f3d6e, type: 2}
       propertyPath: m_Name
       value: Blue Sphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 54785538548559996, guid: 08bd92310e57dec4cb1e8364209f3d6e,
+        type: 2}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 08bd92310e57dec4cb1e8364209f3d6e, type: 2}
@@ -477,6 +482,11 @@ Prefab:
     - target: {fileID: 1884205759064416, guid: 4a3f672030fa47c4c93ac47045f7ab6a, type: 2}
       propertyPath: m_Name
       value: Red Sphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 54599555759492632, guid: 4a3f672030fa47c4c93ac47045f7ab6a,
+        type: 2}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a3f672030fa47c4c93ac47045f7ab6a, type: 2}
@@ -1336,6 +1346,11 @@ Prefab:
     - target: {fileID: 1481844404101582, guid: 7183ca669da0b9f41a59399db4e4557b, type: 2}
       propertyPath: m_Name
       value: Green Sphere
+      objectReference: {fileID: 0}
+    - target: {fileID: 54824000417732596, guid: 7183ca669da0b9f41a59399db4e4557b,
+        type: 2}
+      propertyPath: m_UseGravity
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7183ca669da0b9f41a59399db4e4557b, type: 2}
