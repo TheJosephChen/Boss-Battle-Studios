@@ -15,6 +15,8 @@ public class PlatformController : MonoBehaviour
 
 	private Vector3 initialPosition;
 	private Vector3 endPosition;
+	private float waitUntilTime = -1f;
+	private Vector3 movement;
 
 	void Start ()
 	{
@@ -25,15 +27,27 @@ public class PlatformController : MonoBehaviour
 		
 	void Update () 
 	{
-		Vector3 movement = new Vector3 (xDirection, yDirection, zDirection);
-		transform.Translate(movement * Time.deltaTime * speed, Space.World);
+		if (Time.time < waitUntilTime) {
+			movement = new Vector3 (0f, 0f, 0f);
+		} else {	
+			movement = new Vector3 (xDirection, yDirection, zDirection);
+		}
+
+		if (waitUntilTime == -1f) {
+			transform.Translate (movement * Time.deltaTime * speed, Space.World);
+		}
 
 		// if at either start or end position, reverse direction
-		if (Vector3.Distance(transform.position, initialPosition) <= 0.05 || Vector3.Distance(transform.position, endPosition) <= 0.05) 
+		if (Vector3.Distance (transform.position, initialPosition) <= 0.05 || Vector3.Distance (transform.position, endPosition) <= 0.05) 
 		{
-			xDirection *= -1;
-			yDirection *= -1;
-			zDirection *= -1;
+			if (waitUntilTime == -1f) {
+				waitUntilTime = Time.time + 1f;
+			} else if (Time.time >= waitUntilTime){
+				xDirection *= -1;
+				yDirection *= -1;
+				zDirection *= -1;
+				waitUntilTime = -1f;
+			}
 		}
 	}
 }

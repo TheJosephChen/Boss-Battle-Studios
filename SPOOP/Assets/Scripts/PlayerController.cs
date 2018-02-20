@@ -41,11 +41,20 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void OnCollisionEnter(Collision other)
+	void OnCollisionStay(Collision other)
 	{
 		if (other.gameObject.tag == "Ground")
 		{
+			transform.parent = other.transform;
 			isGrounded = true;
+		}
+	}
+
+	void OnCollisionExit(Collision other)
+	{
+		if (other.gameObject.tag == "Ground")
+		{
+			transform.parent = null;
 		}
 	}
 }
