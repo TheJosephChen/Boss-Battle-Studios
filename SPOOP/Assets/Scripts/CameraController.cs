@@ -5,7 +5,7 @@ using System.Collections;
 public class CameraController : MonoBehaviour {
 
 	// object to follow (player)
-	public GameObject player;
+	private GameObject player;
 
 	private Vector3 offset;
 
