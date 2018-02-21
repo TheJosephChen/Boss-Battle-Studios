@@ -19,9 +19,9 @@ public class CharacterCreationNextLevel : MonoBehaviour
                 child.transform.SetParent (null);
             }
         }
-        DontDestroyOnLoad (child);
         child.transform.position = new Vector3 (0, 3, -20);
         child.GetComponent<Rigidbody>().useGravity = true;
+        DontDestroyOnLoad (child);
         SceneManager.LoadScene("Lobby");
     }
 }
