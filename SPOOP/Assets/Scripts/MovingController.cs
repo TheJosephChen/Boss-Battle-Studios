@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //to be applied to the object that moves
-public class Moving : MonoBehaviour
+public class MovingController : MonoBehaviour
 {
 	public int moveSpeed;
 

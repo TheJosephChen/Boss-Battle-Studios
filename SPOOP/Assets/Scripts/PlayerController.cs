@@ -7,14 +7,18 @@ public class PlayerController : MonoBehaviour
 	public float speed;
 	public float height;
 	public float runSpeed;
+	public float floorHeight;
+	public GameObject obstacle;
 
 	private Rigidbody rb;
 	private bool isGrounded;
+	private Vector3 spawnLocation;
 
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody>();
 		isGrounded = true;
+		spawnLocation = new Vector3 (0f, 0.75f, 0f);
 	}
 
 	void Update ()
@@ -38,13 +42,39 @@ public class PlayerController : MonoBehaviour
 			rb.AddForce (Vector3.up * height);
 			isGrounded = false;
 		}
-	}
 
-	void OnCollisionEnter(Collision other)
-	{
-		if (other.gameObject.tag == "Ground")
-		{
-			isGrounded = true;
+		if (transform.position.y <= -20f) {
+			transform.position = spawnLocation;
 		}
 	}
+
+	void OnCollisionStay(Collision other)
+	{
+		if (other.gameObject.tag == "Ground" || other.gameObject.tag == "dude lookout")
+		{
+			transform.parent = other.transform;
+			isGrounded = true;
+		}
+
+		if (other.gameObject.tag == "dude lookout" && obstacle.activeSelf == false) 
+		{
+			Debug.Log ("made it");
+			obstacle.SetActive (true);
+		}
+
+		if (other.gameObject.name == "Checkpoint") 
+		{
+			spawnLocation = other.transform.position;
+			spawnLocation.y += 0.75f;
+		}
+	}
+
+	void OnCollisionExit(Collision other)
+	{
+		if (other.gameObject.tag == "Ground" || other.gameObject.tag == "dude lookout")
+		{
+			transform.parent = null;
+		}
+	}
+		
 }
