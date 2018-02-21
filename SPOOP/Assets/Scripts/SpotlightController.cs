@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-// attach script to main camera
+// place spotlight object in scene
+// attach script to spotlight object
 public class SpotlightController : MonoBehaviour {
 
 	// object to follow (player)
-	public GameObject player;
+	private GameObject player;
 
 	private Vector3 offset;
 
