@@ -11,9 +11,11 @@ public class PlayerController : MonoBehaviour
 	public float floorHeight;
     public bool isGrounded;
 	public GameObject obstacle;
+	public bool level1Completed;
 
 	private Rigidbody rb;
 	private Vector3 spawnLocation;
+	private Scene activeScene;
 
 	void Start ()
 	{
@@ -21,27 +23,31 @@ public class PlayerController : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 		isGrounded = true;
 		spawnLocation = new Vector3 (0f, 0.75f, 0f);
+		activeScene = SceneManager.GetActiveScene ();
 	}
 
     void FixedUpdate()
     {
-        float moveHorizontal = Input.GetAxis ("Horizontal");
-        float moveVertical = Input.GetAxis ("Vertical");
-
-        float moveSpeed = speed;
-        if (Input.GetKey (KeyCode.LeftShift))
-            moveSpeed = moveSpeed * runMultiplier;
-
-        rb.AddForce (new Vector3(moveHorizontal * moveSpeed, 0, moveVertical * moveSpeed));
-
-        if (Input.GetKey(KeyCode.Space) && isGrounded)
+        if (activeScene.name != "Character Creation")
         {
-            rb.AddForce (Vector3.up * jumpHeight);
-            isGrounded = false;
-        }
+            float moveHorizontal = Input.GetAxis ("Horizontal");
+            float moveVertical = Input.GetAxis ("Vertical");
 
-        if (transform.position.y <= -20f)
-            transform.position = spawnLocation;
+            float moveSpeed = speed;
+            if (Input.GetKey (KeyCode.LeftShift))
+                moveSpeed = moveSpeed * runMultiplier;
+
+            rb.AddForce (new Vector3 (moveHorizontal * moveSpeed, 0, moveVertical * moveSpeed));
+
+            if (Input.GetKey (KeyCode.Space) && isGrounded)
+            {
+                rb.AddForce (Vector3.up * jumpHeight);
+                isGrounded = false;
+            }
+
+            if (transform.position.y <= -20f)
+                transform.position = spawnLocation;
+        }
     }
 
 	void OnCollisionStay(Collision other)
