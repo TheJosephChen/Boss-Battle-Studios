@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
 	public float runSpeed;
 	public float floorHeight;
 	public GameObject obstacle;
+	public bool level1Completed;
 
 	private Rigidbody rb;
 	private bool isGrounded;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
 		isGrounded = true;
 		spawnLocation = new Vector3 (0f, 0.75f, 0f);
+		level1Completed = false;
 	}
 
 	void Update ()
