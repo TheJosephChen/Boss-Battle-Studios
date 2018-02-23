@@ -4,18 +4,18 @@ using System.Collections;
 // attach script to main camera
 public class CameraController : MonoBehaviour {
 
-	// object to follow (player)
-	private GameObject player;
-	private Vector3 offset;
+    // object to follow (player)
+    private GameObject player;
+    private Vector3 offset;
 
-	void Start ()
-	{
-		player = GameObject.FindWithTag ("Player");
-		offset = transform.position - player.transform.position;
-	}
+    void Start ()
+    {
+        player = GameObject.FindWithTag ("Player");
+        offset = transform.position - player.transform.position;
+    }
 
-	void LateUpdate ()
-	{
-		transform.position = player.transform.position + offset;
-	}
+    void LateUpdate ()
+    {
+        transform.position = player.transform.position + offset;
+    }
 }

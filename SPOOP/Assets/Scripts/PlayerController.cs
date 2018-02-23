@@ -5,26 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour 
 {
-	public float speed;
-	public float jumpHeight;
-	public float runMultiplier;
-	public float floorHeight;
+    public float speed;
+    public float jumpHeight;
+    public float runMultiplier;
+    public float floorHeight;
     public bool isGrounded;
-	public GameObject obstacle;
-	public bool level1Completed;
+    public GameObject obstacle;
+    public bool level1Completed;
 
-	private Rigidbody rb;
-	private Vector3 spawnLocation;
-	private Scene activeScene;
+    private Rigidbody rb;
+    private Vector3 spawnLocation;
+    private Scene activeScene;
 
-	void Start ()
-	{
+    void Start ()
+    {
         DontDestroyOnLoad (gameObject);
-		rb = GetComponent<Rigidbody>();
-		isGrounded = true;
-		spawnLocation = new Vector3 (0f, 0.75f, 0f);
-		activeScene = SceneManager.GetActiveScene ();
-	}
+        rb = GetComponent<Rigidbody>();
+        isGrounded = true;
+        spawnLocation = new Vector3 (0f, 0.75f, 0f);
+        activeScene = SceneManager.GetActiveScene ();
+    }
 
     void FixedUpdate()
     {
@@ -50,8 +50,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-	void OnCollisionStay(Collision other)
-	{
+    void OnCollisionStay(Collision other)
+    {
         if ((other.gameObject.CompareTag ("Ground") || other.gameObject.CompareTag ("Moving Platform")) && !isGrounded)
             isGrounded = true;
 
@@ -59,18 +59,18 @@ public class PlayerController : MonoBehaviour
             transform.parent.SetParent (other.transform);
 
         if (other.gameObject.name == "dude lookout" && obstacle.activeSelf == false) 
-			obstacle.SetActive (true);
+            obstacle.SetActive (true);
 
-		if (other.gameObject.name == "Checkpoint") 
-		{
-			spawnLocation = other.transform.position;
-			spawnLocation.y += 0.75f;
-		}
-	}
+        if (other.gameObject.name == "Checkpoint") 
+        {
+            spawnLocation = other.transform.position;
+            spawnLocation.y += 0.75f;
+        }
+    }
 
-	void OnCollisionExit(Collision other)
-	{
+    void OnCollisionExit(Collision other)
+    {
         if (other.gameObject.CompareTag("Moving Platform") || other.gameObject.CompareTag("dude lookout"))
             transform.parent.SetParent (null);
-	}
+    }
 }
