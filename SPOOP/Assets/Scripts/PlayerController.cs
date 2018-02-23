@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 	public float runSpeed;
 	public float floorHeight;
 	public GameObject obstacle;
+	public bool level1Completed;
 
 	private Rigidbody rb;
 	private bool isGrounded;
