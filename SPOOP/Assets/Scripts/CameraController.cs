@@ -6,12 +6,11 @@ public class CameraController : MonoBehaviour {
 
 	// object to follow (player)
 	private GameObject player;
-
 	private Vector3 offset;
 
 	void Start ()
 	{
-		player = GameObject.FindGameObjectWithTag ("Player");
+		player = GameObject.FindWithTag ("Player");
 		offset = transform.position - player.transform.position;
 	}
 

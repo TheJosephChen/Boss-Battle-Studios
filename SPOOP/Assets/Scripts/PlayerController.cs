@@ -1,66 +1,59 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour 
 {
 	public float speed;
 	public float height;
-	public float runSpeed;
+	public float runMultiplier;
 	public float floorHeight;
+    public bool isGrounded;
 	public GameObject obstacle;
 
 	private Rigidbody rb;
-	private bool isGrounded;
 	private Vector3 spawnLocation;
 
 	void Start ()
 	{
+        DontDestroyOnLoad (gameObject);
 		rb = GetComponent<Rigidbody>();
 		isGrounded = true;
 		spawnLocation = new Vector3 (0f, 0.75f, 0f);
 	}
 
-	void Update ()
-	{
-		// regular player movement
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical");
+    void FixedUpdate()
+    {
+        float moveHorizontal = Input.GetAxis ("Horizontal");
+        float moveVertical = Input.GetAxis ("Vertical");
 
-		float moveSpeed = speed;
-		if (Input.GetKey (KeyCode.LeftShift))
-			moveSpeed = moveSpeed * runSpeed;
+        float moveSpeed = speed;
+        if (Input.GetKey (KeyCode.LeftShift))
+            moveSpeed = moveSpeed * runMultiplier;
 
-		float dz = moveVertical * moveSpeed * Time.deltaTime;
-		float dx = moveHorizontal * moveSpeed * Time.deltaTime;
-		transform.position = new Vector3(transform.position.x + dx, transform.position.y, transform.position.z + dz);
+        rb.AddForce (new Vector3(moveHorizontal * moveSpeed, 0, moveVertical * moveSpeed));
 
-		// jumping
-		if (Input.GetKey(KeyCode.Space) && 
-			isGrounded)
-		{
-			rb.AddForce (Vector3.up * height);
-			isGrounded = false;
-		}
+        if (Input.GetKey(KeyCode.Space) && isGrounded)
+        {
+            rb.AddForce (Vector3.up * height);
+            isGrounded = false;
+        }
 
-		if (transform.position.y <= -20f) {
-			transform.position = spawnLocation;
-		}
-	}
+        if (transform.position.y <= -20f)
+            transform.position = spawnLocation;
+    }
 
 	void OnCollisionStay(Collision other)
 	{
-		if (other.gameObject.tag == "Ground" || other.gameObject.tag == "dude lookout")
-		{
-			transform.parent = other.transform;
-			isGrounded = true;
-		}
+        if ((other.gameObject.CompareTag ("Ground") || other.gameObject.CompareTag ("Moving Platform")) && !isGrounded)
+            isGrounded = true;
 
-		if (other.gameObject.tag == "dude lookout" && obstacle.activeSelf == false) 
-		{
-			Debug.Log ("made it");
+        if (other.gameObject.CompareTag ("Moving Platform"))
+            transform.parent.SetParent (other.transform);
+
+        if (other.gameObject.name == "dude lookout" && obstacle.activeSelf == false) 
 			obstacle.SetActive (true);
-		}
 
 		if (other.gameObject.name == "Checkpoint") 
 		{
@@ -71,10 +64,7 @@ public class PlayerController : MonoBehaviour
 
 	void OnCollisionExit(Collision other)
 	{
-		if (other.gameObject.tag == "Ground" || other.gameObject.tag == "dude lookout")
-		{
-			transform.parent = null;
-		}
+        if (other.gameObject.CompareTag("Moving Platform") || other.gameObject.CompareTag("dude lookout"))
+            transform.parent.SetParent (null);
 	}
-		
 }
