@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour 
 {
@@ -13,38 +14,42 @@ public class PlayerController : MonoBehaviour
 	private Rigidbody rb;
 	private bool isGrounded;
 	private Vector3 spawnLocation;
+	private Scene activeScene;
 
 	void Start ()
 	{
 		rb = GetComponent<Rigidbody>();
 		isGrounded = true;
 		spawnLocation = new Vector3 (0f, 0.75f, 0f);
+		activeScene = SceneManager.GetActiveScene ();
 	}
 
 	void Update ()
 	{
-		// regular player movement
-		float moveHorizontal = Input.GetAxis ("Horizontal");
-		float moveVertical = Input.GetAxis ("Vertical");
-
-		float moveSpeed = speed;
-		if (Input.GetKey (KeyCode.LeftShift))
-			moveSpeed = moveSpeed * runSpeed;
-
-		float dz = moveVertical * moveSpeed * Time.deltaTime;
-		float dx = moveHorizontal * moveSpeed * Time.deltaTime;
-		transform.position = new Vector3(transform.position.x + dx, transform.position.y, transform.position.z + dz);
-
-		// jumping
-		if (Input.GetKey(KeyCode.Space) && 
-			isGrounded)
+		if (activeScene.name != "Character Creation") 
 		{
-			rb.AddForce (Vector3.up * height);
-			isGrounded = false;
-		}
+			// regular player movement
+			float moveHorizontal = Input.GetAxis ("Horizontal");
+			float moveVertical = Input.GetAxis ("Vertical");
 
-		if (transform.position.y <= -20f) {
-			transform.position = spawnLocation;
+			float moveSpeed = speed;
+			if (Input.GetKey (KeyCode.LeftShift))
+				moveSpeed = moveSpeed * runSpeed;
+
+			float dz = moveVertical * moveSpeed * Time.deltaTime;
+			float dx = moveHorizontal * moveSpeed * Time.deltaTime;
+			transform.position = new Vector3 (transform.position.x + dx, transform.position.y, transform.position.z + dz);
+
+			// jumping
+			if (Input.GetKey (KeyCode.Space) &&
+			   isGrounded) {
+				rb.AddForce (Vector3.up * height);
+				isGrounded = false;
+			}
+
+			if (transform.position.y <= -20f) {
+				transform.position = spawnLocation;
+			}
 		}
 	}
 
