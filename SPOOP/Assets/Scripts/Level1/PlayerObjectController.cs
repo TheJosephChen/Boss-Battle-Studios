@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerObjectController : MonoBehaviour
 {
-	void Start ()
+    void Start ()
     {
         GameObject.FindWithTag ("Player").gameObject.transform.SetParent (transform);
-	}
+    }
 }

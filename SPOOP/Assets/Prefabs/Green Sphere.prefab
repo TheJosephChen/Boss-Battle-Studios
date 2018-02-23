@@ -112,7 +112,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  height: 200
+  jumpHeight: 200
   runMultiplier: 2
   floorHeight: 0
   isGrounded: 0

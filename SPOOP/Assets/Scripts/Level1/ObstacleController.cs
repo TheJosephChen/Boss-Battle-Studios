@@ -10,7 +10,7 @@ public class ObstacleController : MonoBehaviour
 	void Start () 
 	{
         GameObject.FindWithTag ("Player").GetComponent<PlayerController>().obstacle = gameObject;
-		gameObject.SetActive (false); //make sure object starts inactive
+        gameObject.SetActive (false); //make sure object starts inactive
 	}
 
 	void Update () 

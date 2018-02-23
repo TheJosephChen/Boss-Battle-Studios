@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour 
 {
 	public float speed;
-	public float height;
+	public float jumpHeight;
 	public float runMultiplier;
 	public float floorHeight;
     public bool isGrounded;
@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space) && isGrounded)
         {
-            rb.AddForce (Vector3.up * height);
+            rb.AddForce (Vector3.up * jumpHeight);
             isGrounded = false;
         }
 
