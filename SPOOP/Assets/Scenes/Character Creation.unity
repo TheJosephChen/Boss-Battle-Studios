@@ -161,6 +161,11 @@ Prefab:
       propertyPath: m_UseGravity
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114199727929375074, guid: 08bd92310e57dec4cb1e8364209f3d6e,
+        type: 2}
+      propertyPath: height
+      value: 150
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 08bd92310e57dec4cb1e8364209f3d6e, type: 2}
   m_IsPrefabParent: 0
@@ -488,6 +493,16 @@ Prefab:
         type: 2}
       propertyPath: m_UseGravity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114988082795836704, guid: 4a3f672030fa47c4c93ac47045f7ab6a,
+        type: 2}
+      propertyPath: height
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 54599555759492632, guid: 4a3f672030fa47c4c93ac47045f7ab6a,
+        type: 2}
+      propertyPath: m_Drag
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4a3f672030fa47c4c93ac47045f7ab6a, type: 2}
@@ -1352,6 +1367,11 @@ Prefab:
         type: 2}
       propertyPath: m_UseGravity
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114914576860299958, guid: 7183ca669da0b9f41a59399db4e4557b,
+        type: 2}
+      propertyPath: height
+      value: 150
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7183ca669da0b9f41a59399db4e4557b, type: 2}

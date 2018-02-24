@@ -21,6 +21,7 @@ public class CharacterCreationNextLevel : MonoBehaviour
         }
         child.transform.position = new Vector3 (-1, 5, -42);
         child.GetComponent<Rigidbody>().useGravity = true;
+        child.GetComponent<PlayerController> ().isGrounded = false;
         DontDestroyOnLoad (child);
         SceneManager.LoadScene("Lobby");
     }
