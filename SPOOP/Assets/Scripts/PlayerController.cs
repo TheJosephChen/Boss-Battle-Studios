@@ -46,7 +46,10 @@ public class PlayerController : MonoBehaviour
             }
 
             if (transform.position.y <= -20f)
+            {
                 transform.position = spawnLocation;
+                obstacle.SetActive (false);
+            }
         }
     }
 
