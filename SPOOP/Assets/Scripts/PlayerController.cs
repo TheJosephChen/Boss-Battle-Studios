@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
         activeScene = SceneManager.GetActiveScene ();
     }
 
-    void FixedUpdate()
+    void Update()
     {
         if (activeScene.name != "Character Creation")
         {
@@ -45,9 +45,10 @@ public class PlayerController : MonoBehaviour
                 isGrounded = false;
             }
 
-            if (transform.position.y <= -20f)
+            if (transform.position.y <= -15f)
             {
                 transform.position = spawnLocation;
+                obstacle.gameObject.GetComponent<ObstacleController> ().resetPos ();
                 obstacle.SetActive (false);
             }
         }
