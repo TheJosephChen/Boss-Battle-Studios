@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33009164978015674}
   - component: {fileID: 65602523131157062}
   - component: {fileID: 23295212623034160}
-  - component: {fileID: 54201648788842394}
   m_Layer: 0
   m_Name: Sationary Platform
   m_TagString: Ground
@@ -84,21 +83,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1309390021085106}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &54201648788842394
-Rigidbody:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1309390021085106}
-  serializedVersion: 2
-  m_Mass: 100
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &65602523131157062
 BoxCollider:
   m_ObjectHideFlags: 1
