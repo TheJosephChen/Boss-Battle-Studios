@@ -29,18 +29,18 @@ public class PlatformController : MonoBehaviour
     {
         if (Time.time < waitUntilTime) 
             movement = new Vector3 (0f, 0f, 0f);
-        else    
+        else     
             movement = new Vector3 (xDirection, yDirection, zDirection);
 
         if (waitUntilTime == -1f)
             transform.Translate (movement * Time.deltaTime * speed, Space.World);
 
         // if at either start or end position, reverse direction
-        if (Vector3.Distance (transform.position, initialPosition) <= 0.03 || Vector3.Distance (transform.position, endPosition) <= 0.03) 
+        if (Vector3.Distance (transform.position, initialPosition) <= 0.045 || Vector3.Distance (transform.position, endPosition) <= 0.045) 
         {
-            if (waitUntilTime == -1f)
-                waitUntilTime = Time.time + 1f;
-            else if(Time.time >= waitUntilTime)
+            if (waitUntilTime == -1f) 
+                waitUntilTime = Time.time + 0.75f;
+            else if (Time.time >= waitUntilTime)
             {
                 xDirection *= -1;
                 yDirection *= -1;
