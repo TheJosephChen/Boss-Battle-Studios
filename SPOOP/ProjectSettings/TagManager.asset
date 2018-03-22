@@ -8,6 +8,7 @@ TagManager:
   - dude lookout
   - Moving Platform
   - Bullet Spawn
+  - Bullet
   layers:
   - Default
   - TransparentFX
