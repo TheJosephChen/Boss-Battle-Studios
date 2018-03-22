@@ -118,7 +118,7 @@ MonoBehaviour:
   isGrounded: 0
   obstacle: {fileID: 0}
   level1Completed: 0
-  bullet: {fileID: 1399481657455008, guid: 864c8cffa7799e94b965850bb6734fbd, type: 2}
+  bullet: {fileID: 1322074123512846, guid: 864c8cffa7799e94b965850bb6734fbd, type: 2}
   shootRate: 0.5
   bulletSpeed: 100
   bulletLifetime: 1
