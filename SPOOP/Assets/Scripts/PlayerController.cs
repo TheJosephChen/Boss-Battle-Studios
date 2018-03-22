@@ -13,6 +13,12 @@ public class PlayerController : MonoBehaviour
     public GameObject obstacle;
     public bool level1Completed;
 
+    public GameObject bullet;
+    private Transform bulletSpawn;
+    public float shootRate = 0.5f;
+    public float bulletSpeed = 100f;
+    public float bulletLifetime = 1.0f;
+    private float timeToShoot = 0f;
     private Rigidbody rb;
     private Vector3 spawnLocation;
     private Scene activeScene;
@@ -51,6 +57,15 @@ public class PlayerController : MonoBehaviour
                 obstacle.gameObject.GetComponent<ObstacleController> ().resetPos ();
                 obstacle.SetActive (false);
             }
+
+            // shooting
+            if (level1Completed) 
+            {
+                if (Input.GetKey (KeyCode.Return) && Time.time >= timeToShoot) {
+                    timeToShoot = Time.time + 1f / shootRate;
+                    Shoot ();
+                }
+            }
         }
     }
 
@@ -76,5 +91,16 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Moving Platform") || other.gameObject.CompareTag("dude lookout"))
             transform.parent.SetParent (null);
+    }
+
+    void Shoot ()
+    {
+        bulletSpawn = GameObject.FindGameObjectWithTag ("Bullet Spawn").transform;
+        var _bullet = (GameObject)Instantiate (
+            bullet,
+            bulletSpawn.transform,
+            false);
+        _bullet.GetComponent<Rigidbody> ().velocity = _bullet.transform.forward * bulletSpeed;
+        Destroy (_bullet, bulletLifetime);
     }
 }
