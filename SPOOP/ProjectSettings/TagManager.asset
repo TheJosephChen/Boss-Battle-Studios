@@ -9,6 +9,7 @@ TagManager:
   - Moving Platform
   - Bullet Spawn
   - Bullet
+  - Door 1
   layers:
   - Default
   - TransparentFX

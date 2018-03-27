@@ -7,7 +7,8 @@ public class LobbyLevel1NextLevel : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        if (!other.GetComponent<PlayerController> ().level1Completed) 
+        GameObject player = GameObject.FindGameObjectWithTag ("Player");
+        if (!player.GetComponent<PlayerController> ().level1Completed) 
         {
             other.transform.SetParent (null);
             other.transform.position = new Vector3 (0, 3, 0);
@@ -15,8 +16,6 @@ public class LobbyLevel1NextLevel : MonoBehaviour
             other.GetComponent<Rigidbody> ().angularVelocity = Vector3.zero;
             DontDestroyOnLoad (other.gameObject);
             SceneManager.LoadScene ("Level 1");
-        } else {
-            gameObject.GetComponent<BoxCollider> ().isTrigger = false;
         }
     }
 }
