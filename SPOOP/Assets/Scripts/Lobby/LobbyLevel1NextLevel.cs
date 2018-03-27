@@ -15,7 +15,9 @@ public class LobbyLevel1NextLevel : MonoBehaviour
             other.GetComponent<Rigidbody> ().angularVelocity = Vector3.zero;
             DontDestroyOnLoad (other.gameObject);
             SceneManager.LoadScene ("Level 1");
-        } else {
+        } 
+        else 
+        {
             gameObject.GetComponent<BoxCollider> ().isTrigger = false;
         }
     }
