@@ -25,7 +25,7 @@ public class PlatformController : MonoBehaviour
         endPosition = new Vector3 (initialPosition.x + xRange, initialPosition.y + yRange, initialPosition.z + zRange);
     }
         
-    void Update () 
+    void FixedUpdate () 
     {
         if (Time.time < waitUntilTime) 
             movement = new Vector3 (0f, 0f, 0f);
