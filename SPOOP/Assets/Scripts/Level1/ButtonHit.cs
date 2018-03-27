@@ -8,7 +8,7 @@ public class ButtonHit : MonoBehaviour
 
     void OnCollisionEnter (Collision other)
     {
-        if (other.transform.CompareTag ("Bullet"))
-            door.GetComponent<Renderer> ().material.color = Color.white;
+        if (other.transform.CompareTag("Bullet"))
+            door.transform.position = new Vector3(13.5f, 18, 78);
     }
 }
