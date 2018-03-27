@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
             bullet,
             bulletSpawn.transform,
             false);
+        _bullet.transform.position = bulletSpawn.transform.position;
         _bullet.GetComponent<Rigidbody> ().velocity = _bullet.transform.forward * bulletSpeed;
         Destroy (_bullet, bulletLifetime);
     }
