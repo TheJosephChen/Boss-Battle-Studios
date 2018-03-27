@@ -4,7 +4,6 @@ using System.Collections;
 // attach script to light over Level 2 door
 public class LobbyLevel2LightSwitch : MonoBehaviour {
 
-    // 
     private GameObject player;
 
     private Vector3 offset;
