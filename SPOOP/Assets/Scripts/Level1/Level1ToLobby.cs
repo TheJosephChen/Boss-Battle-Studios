@@ -14,5 +14,7 @@ public class Level1ToLobby : MonoBehaviour
         other.GetComponent<PlayerController> ().isGrounded = false;
         DontDestroyOnLoad (other.gameObject);
         SceneManager.LoadScene ("Lobby");
+        GameObject door1 = GameObject.FindGameObjectWithTag ("Door 1");
+        door1.GetComponent<BoxCollider> ().isTrigger = false;
     }
 }
