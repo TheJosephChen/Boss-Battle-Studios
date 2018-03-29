@@ -5,7 +5,6 @@ using UnityEngine;
 public class TargetHitController : MonoBehaviour
 {
     public GameObject platform;
-    public Material white;
     public Material red;
     public Material green;
 
@@ -24,8 +23,6 @@ public class TargetHitController : MonoBehaviour
             platform.gameObject.SetActive (!isActive);
             foreach (Renderer rend in GetComponentsInChildren<Renderer>()) 
             {
-                if (rend.material == white)
-                    break;
                 if (!hit)
                     rend.material = green;
                 else
