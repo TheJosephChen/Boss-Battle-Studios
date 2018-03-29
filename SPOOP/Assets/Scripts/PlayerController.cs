@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
                 isGrounded = false;
             }
 
+            // respawn
             if (transform.position.y <= -15f)
             {
                 transform.position = spawnLocation;
