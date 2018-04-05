@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetHitController : MonoBehaviour
+public class TargetTrapController : MonoBehaviour
 {
     public GameObject platform;
+    public GameObject switchTarget;
     public Material red;
     public Material green;
 
@@ -17,18 +18,21 @@ public class TargetHitController : MonoBehaviour
 
     void OnCollisionEnter (Collision other)
     {
-        if (other.transform.CompareTag ("Bullet")) 
+        // only trigger trap once
+        if (other.transform.CompareTag ("Bullet") && !hit) 
         {
             bool isActive = platform.gameObject.activeSelf;
             platform.gameObject.SetActive (!isActive);
             foreach (Renderer rend in GetComponentsInChildren<Renderer>()) 
             {
-                // color swap
-                if (rend.material.color == red.color)
-                    rend.material = green;
-                else
-                    rend.material = red;
+                rend.material = green;
             }
+            // reset attached target
+            foreach (Renderer rend in switchTarget.GetComponentsInChildren<Renderer>()) 
+            {
+                rend.material = red;
+            }
+
             hit = !hit;
         }   
     }
