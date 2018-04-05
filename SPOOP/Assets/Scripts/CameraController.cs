@@ -17,5 +17,9 @@ public class CameraController : MonoBehaviour {
     void LateUpdate ()
     {
         transform.position = player.transform.position + offset;
+		if (Input.GetKey (KeyCode.E) && player.GetComponent<PlayerController> ().level2Completed) 
+		{
+			transform.RotateAround (player.transform.position, new Vector3 (1, 0, 0), -30);		
+		}
     }
 }

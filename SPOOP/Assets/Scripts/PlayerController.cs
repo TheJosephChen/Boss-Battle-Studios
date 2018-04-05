@@ -16,10 +16,13 @@ public class PlayerController : MonoBehaviour
 
     public GameObject bullet;
     private Transform bulletSpawn;
-    public float shootRate = 0.5f;
-    public float bulletSpeed = 100f;
-    public float bulletLifetime = 1.0f;
+    public float shootRate = 5f;
+    public float bulletSpeed = 500f;
+    public float bulletLifetime = 0.5f;
+	public float switchRate = 1f;
+
     private float timeToShoot = 0f;
+	private float timeToSwitch = 0f;
     private Rigidbody rb;
     private Vector3 spawnLocation;
     private Scene activeScene;
@@ -33,7 +36,7 @@ public class PlayerController : MonoBehaviour
         activeScene = SceneManager.GetActiveScene ();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (activeScene.name != "Character Creation")
         {
@@ -68,13 +71,23 @@ public class PlayerController : MonoBehaviour
                     Shoot ();
                 }
             }
+
+			//switching gravity
+			if (level2Completed) 
+			{
+				if (Input.GetKey (KeyCode.E) && Time.time >= timeToSwitch) 
+				{
+					timeToSwitch = Time.time + 1f / switchRate;
+					SwitchGravity ();
+				}
+			}
         }
     }
 
     void OnCollisionStay(Collision other)
     {
-        if ((other.gameObject.CompareTag ("Ground") || other.gameObject.CompareTag ("Moving Platform")) && !isGrounded)
-            isGrounded = true;
+		if ((other.gameObject.CompareTag ("Ground") || other.gameObject.CompareTag ("Moving Platform")) && !isGrounded && Time.time >= timeToSwitch)
+			isGrounded = true;
 
         if (other.gameObject.CompareTag ("Moving Platform"))
             transform.parent.SetParent (other.transform);
@@ -106,4 +119,11 @@ public class PlayerController : MonoBehaviour
         _bullet.GetComponent<Rigidbody> ().velocity = _bullet.transform.forward * bulletSpeed;
         Destroy (_bullet, bulletLifetime);
     }
+
+	void SwitchGravity()
+	{
+		Physics.gravity = -Physics.gravity;
+		jumpHeight = -jumpHeight;
+		isGrounded = false;
+	}
 }
