@@ -1292,7 +1292,7 @@ Prefab:
         type: 2}
       propertyPath: platform
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2105364483}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff4d6f583a240204ca67f7021eda37d2, type: 2}
   m_IsPrefabParent: 0
