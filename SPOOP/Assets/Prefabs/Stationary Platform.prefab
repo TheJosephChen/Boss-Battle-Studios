@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 65602523131157062}
   - component: {fileID: 23295212623034160}
   m_Layer: 0
-  m_Name: Sationary Platform
+  m_Name: Stationary Platform
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
