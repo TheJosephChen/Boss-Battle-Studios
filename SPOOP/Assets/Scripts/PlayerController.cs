@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public GameObject obstacle;
     public bool level1Completed;
     public bool level2Completed;
+    public bool level3Completed;
 
     public GameObject bullet;
     private Transform bulletSpawn;
