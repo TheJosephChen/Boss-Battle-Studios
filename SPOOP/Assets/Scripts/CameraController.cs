@@ -2,13 +2,16 @@
 using System.Collections;
 
 // attach script to main camera
-public class CameraController : MonoBehaviour {
-
+public class CameraController : MonoBehaviour
+{
+    public bool gravity;
     private GameObject player;
     private Vector3 offset;
     private Quaternion normalGravity, reverseGravity;
-    private bool gravity;
     private float yOffset;
+
+    public float switchRate = 1f;
+    private float timeToSwitch = 0f;
 
     void Start ()
     {
@@ -44,8 +47,13 @@ public class CameraController : MonoBehaviour {
         }
 
         //reverse gravity
-        if (Input.GetKeyDown (KeyCode.E) && player.GetComponent<PlayerController> ().level2Completed)
+        if (Input.GetKeyDown (KeyCode.E)
+            && player.GetComponent<PlayerController> ().level2Completed
+            && Time.time >= timeToSwitch)
+        {
+            timeToSwitch = Time.time + 1f / switchRate;
             gravity = !gravity;
+        }
     }
 
     void LateUpdate ()

@@ -60,11 +60,17 @@ public class PlayerController : MonoBehaviour
             if (transform.position.y <= -10f || transform.position.y >= 20f)
             {
                 //if spawn location is on floor, gravity is down
-                if (spawnLocation.y == 0)
-                    Physics.gravity = new Vector3 (0, -1, 0);
+                if (spawnLocation.y == 0.75f)
+                {
+                    Physics.gravity = new Vector3 (0, -9.8f, 0);
+                    GameObject.FindWithTag ("MainCamera").GetComponent<CameraController> ().gravity = true;
+                }
                 //if spawn location is on ceiling, gravity is up
                 else
-                    Physics.gravity = new Vector3 (0, 1, 0);
+                {
+                    Physics.gravity = new Vector3 (0, 9.8f, 0);
+                    GameObject.FindWithTag ("MainCamera").GetComponent<CameraController> ().gravity = false;
+                }
                 transform.position = spawnLocation;
                 obstacle.gameObject.GetComponent<ObstacleController> ().resetPos ();
                 obstacle.SetActive (false);
@@ -97,7 +103,10 @@ public class PlayerController : MonoBehaviour
 
         if (other.gameObject.name == "dude lookout" && obstacle.activeSelf == false) 
             obstacle.SetActive (true);
+    }
 
+    void OnCollisionEnter(Collision other)
+    {
         if (other.gameObject.name == "Checkpoint") 
         {
             spawnLocation = other.transform.position;
