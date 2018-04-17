@@ -23,7 +23,8 @@ public class TargetHitController : MonoBehaviour
             platform.gameObject.SetActive (!isActive);
             foreach (Renderer rend in GetComponentsInChildren<Renderer>()) 
             {
-                if (!hit)
+                // color swap
+                if (rend.material.color == red.color)
                     rend.material = green;
                 else
                     rend.material = red;
