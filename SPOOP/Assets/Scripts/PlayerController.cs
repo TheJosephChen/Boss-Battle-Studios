@@ -5,22 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour 
 {
+    public GameObject obstacle;
     public float speed;
     public float jumpHeight;
     public float runMultiplier;
     public float floorHeight;
-    public bool isGrounded;
-    public GameObject obstacle;
-    public bool level1Completed;
-    public bool level2Completed;
-    public bool level3Completed;
+    public bool isGrounded = true;
+    public bool gravity = true;
+    public bool level1Completed = false;
+    public bool level2Completed = false;
+    public bool level3Completed = false;
 
     public GameObject bullet;
     private Transform bulletSpawn;
-    public float shootRate = 0.5f;
-    public float bulletSpeed = 100f;
-    public float bulletLifetime = 1.0f;
+    public float shootRate = 5f;
+    public float bulletSpeed = 500f;
+    public float bulletLifetime = 0.5f;
+    public float switchRate = 1f;
+
     private float timeToShoot = 0f;
+    private float timeToSwitch = 0f;
     private Rigidbody rb;
     private Vector3 spawnLocation;
     private Scene activeScene;
@@ -29,12 +33,11 @@ public class PlayerController : MonoBehaviour
     {
         DontDestroyOnLoad (gameObject);
         rb = GetComponent<Rigidbody>();
-        isGrounded = true;
         spawnLocation = new Vector3 (0f, 0.75f, 0f);
         activeScene = SceneManager.GetActiveScene ();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (activeScene.name != "Character Creation")
         {
@@ -54,27 +57,39 @@ public class PlayerController : MonoBehaviour
             }
 
             // respawn
-            if (transform.position.y <= -15f)
+            if (transform.position.y <= -10f || transform.position.y >= 20f)
             {
+                //if spawn location is on floor, gravity is down
+                if (spawnLocation.y == 0)
+                    Physics.gravity = new Vector3 (0, -1, 0);
+                //if spawn location is on ceiling, gravity is up
+                else
+                    Physics.gravity = new Vector3 (0, 1, 0);
                 transform.position = spawnLocation;
                 obstacle.gameObject.GetComponent<ObstacleController> ().resetPos ();
                 obstacle.SetActive (false);
             }
 
             // shooting
-            if (level1Completed) 
+            if (level1Completed && Input.GetKey (KeyCode.Return) && Time.time >= timeToShoot)
             {
-                if (Input.GetKey (KeyCode.Return) && Time.time >= timeToShoot) {
-                    timeToShoot = Time.time + 1f / shootRate;
-                    Shoot ();
-                }
+                timeToShoot = Time.time + 1f / shootRate;
+                Shoot ();
+            }
+
+            //switching gravity
+            if (level2Completed && Input.GetKey (KeyCode.E) && Time.time >= timeToSwitch) 
+            {
+                timeToSwitch = Time.time + 1f / switchRate;
+                SwitchGravity ();
             }
         }
     }
 
     void OnCollisionStay(Collision other)
     {
-        if ((other.gameObject.CompareTag ("Ground") || other.gameObject.CompareTag ("Moving Platform")) && !isGrounded)
+        if ((other.gameObject.CompareTag ("Ground") || other.gameObject.CompareTag ("Moving Platform"))
+            && !isGrounded && Time.time >= timeToSwitch)
             isGrounded = true;
 
         if (other.gameObject.CompareTag ("Moving Platform"))
@@ -86,7 +101,10 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.name == "Checkpoint") 
         {
             spawnLocation = other.transform.position;
-            spawnLocation.y += 0.75f;
+            if (gravity)
+                spawnLocation.y += 0.75f;
+            else
+                spawnLocation.y -= 0.75f;
         }
     }
 
@@ -106,5 +124,13 @@ public class PlayerController : MonoBehaviour
         _bullet.transform.position = bulletSpawn.transform.position;
         _bullet.GetComponent<Rigidbody> ().velocity = _bullet.transform.forward * bulletSpeed;
         Destroy (_bullet, bulletLifetime);
+    }
+
+    void SwitchGravity()
+    {
+        Physics.gravity = -Physics.gravity;
+        gravity = !gravity;
+        jumpHeight = -jumpHeight;
+        isGrounded = false;
     }
 }
