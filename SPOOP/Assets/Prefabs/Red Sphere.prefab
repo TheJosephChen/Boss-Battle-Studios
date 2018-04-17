@@ -111,12 +111,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f662851b20c349dab748af46d6fb730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacle: {fileID: 0}
   speed: 10
   jumpHeight: 200
   runMultiplier: 2
   floorHeight: 0
   isGrounded: 0
-  obstacle: {fileID: 0}
+  gravity: 1
   level1Completed: 0
   level2Completed: 0
   level3Completed: 0
@@ -124,6 +125,7 @@ MonoBehaviour:
   shootRate: 0.5
   bulletSpeed: 100
   bulletLifetime: 1
+  switchRate: 1
 --- !u!135 &135510272223974876
 SphereCollider:
   m_ObjectHideFlags: 1
