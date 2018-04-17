@@ -11,7 +11,7 @@ public class SwitchPickup : MonoBehaviour
         if (other.transform.CompareTag ("Player"))
         {
             transform.gameObject.SetActive (false);
-            EditorUtility.DisplayDialog ("You got a gravity switch!", "Press <not implemented> to activate!", "Okay");
+            EditorUtility.DisplayDialog ("You got a gravity switch!", "Press E to activate!", "Okay");
         }
     }
 }

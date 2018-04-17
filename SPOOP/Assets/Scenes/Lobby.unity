@@ -1814,7 +1814,7 @@ GameObject:
   - component: {fileID: 291573616}
   m_Layer: 0
   m_Name: Level 3 Door
-  m_TagString: Door 1
+  m_TagString: Door 3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10452,8 +10452,8 @@ GameObject:
   - component: {fileID: 1637085013}
   - component: {fileID: 1637085012}
   m_Layer: 0
-  m_Name: Level 2
-  m_TagString: Untagged
+  m_Name: Level 2 Door
+  m_TagString: Door 2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
