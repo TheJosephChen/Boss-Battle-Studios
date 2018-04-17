@@ -7,14 +7,14 @@ public class CameraController : MonoBehaviour {
     private GameObject player;
     private Vector3 offset;
     private Quaternion normalGravity, reverseGravity;
-    private int gravity;
+    private bool gravity;
     private float yOffset;
 
     void Start ()
     {
         player = GameObject.FindWithTag ("Player");
         offset = transform.position - player.transform.position;
-        gravity = 1;
+        gravity = true;
         yOffset = offset.y;
 
         //get necessary rotations
@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour {
     void Update()
     {
         //if reversed gravity, rotate and move camera until in position
-        if (gravity == -1)
+        if (!gravity)
         {
             if (transform.rotation != reverseGravity)
                 transform.Rotate (-Time.deltaTime * 15, 0, 0);
@@ -45,7 +45,7 @@ public class CameraController : MonoBehaviour {
 
         //reverse gravity
         if (Input.GetKeyDown (KeyCode.E) && player.GetComponent<PlayerController> ().level2Completed)
-            gravity = -gravity;
+            gravity = !gravity;
     }
 
     void LateUpdate ()

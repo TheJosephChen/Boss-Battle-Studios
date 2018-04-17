@@ -59,6 +59,12 @@ public class PlayerController : MonoBehaviour
             // respawn
             if (transform.position.y <= -10f || transform.position.y >= 20f)
             {
+                //if spawn location is on floor, gravity is down
+                if (spawnLocation.y == 0)
+                    Physics.gravity = new Vector3 (0, -1, 0);
+                //if spawn location is on ceiling, gravity is up
+                else
+                    Physics.gravity = new Vector3 (0, 1, 0);
                 transform.position = spawnLocation;
                 obstacle.gameObject.GetComponent<ObstacleController> ().resetPos ();
                 obstacle.SetActive (false);
