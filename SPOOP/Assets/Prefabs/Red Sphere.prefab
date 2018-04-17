@@ -118,7 +118,7 @@ MonoBehaviour:
   floorHeight: 0
   isGrounded: 0
   gravity: 1
-  level1Completed: 1
+  level1Completed: 0
   level2Completed: 0
   level3Completed: 0
   bullet: {fileID: 1322074123512846, guid: 864c8cffa7799e94b965850bb6734fbd, type: 2}
