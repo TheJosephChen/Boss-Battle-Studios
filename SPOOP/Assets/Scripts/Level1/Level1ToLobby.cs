@@ -7,14 +7,16 @@ public class Level1ToLobby : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        other.transform.SetParent (null);
-        other.transform.position = new Vector3 (-1, 5, -42);
-        other.GetComponent<Rigidbody> ().velocity = Vector3.zero;
-        other.GetComponent<Rigidbody> ().angularVelocity = Vector3.zero;
-        other.GetComponent<PlayerController> ().isGrounded = false;
-        DontDestroyOnLoad (other.gameObject);
-        SceneManager.LoadScene ("Lobby");
-        GameObject door1 = GameObject.FindGameObjectWithTag ("Door 1");
-        door1.GetComponent<BoxCollider> ().isTrigger = false;
+        if (other.CompareTag ("Player"))
+        {
+            other.transform.SetParent (null);
+            other.transform.position = new Vector3 (-1, 5, -42);
+            other.GetComponent<Rigidbody> ().velocity = Vector3.zero;
+            other.GetComponent<Rigidbody> ().angularVelocity = Vector3.zero;
+            other.GetComponent<PlayerController> ().isGrounded = false;
+            DontDestroyOnLoad (other.gameObject);
+            SceneManager.LoadScene ("Lobby");
+            GameObject.FindGameObjectWithTag ("Door 1").GetComponent<BoxCollider> ().isTrigger = false;
+        }
     }
 }
