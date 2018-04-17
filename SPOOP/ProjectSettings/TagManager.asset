@@ -11,7 +11,8 @@ TagManager:
   - Bullet
   - Obstacle
   - Door 1
-
+  - Door 2
+  - Door 3
   layers:
   - Default
   - TransparentFX
