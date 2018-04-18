@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
         Destroy (_bullet, bulletLifetime);
     }
 
-    void SwitchGravity()
+    public void SwitchGravity()
     {
         Physics.gravity = -Physics.gravity;
         gravity = !gravity;
