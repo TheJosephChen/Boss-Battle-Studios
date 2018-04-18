@@ -14,7 +14,7 @@ public class LobbyLevel3NextLevel : MonoBehaviour
             other.transform.position = new Vector3 (0, 3, 0);
             other.GetComponent<Rigidbody> ().velocity = Vector3.zero;
             other.GetComponent<Rigidbody> ().angularVelocity = Vector3.zero;
-            Physics.gravity = new Vector3 (0, -9.8f, 0);
+            other.GetComponent<PlayerController>().SwitchGravity();
             DontDestroyOnLoad (other.gameObject);
             SceneManager.LoadScene ("Level 3");
         }
