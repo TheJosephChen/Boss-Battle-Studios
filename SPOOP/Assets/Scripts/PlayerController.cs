@@ -62,13 +62,15 @@ public class PlayerController : MonoBehaviour
                 //if spawn location is on floor, gravity is down
                 if (spawnLocation.y == 0.75f || spawnLocation.y == 15.75)
                 {
-                    Physics.gravity = new Vector3 (0, -9.8f, 0);
+                    if (!gravity)
+                        SwitchGravity ();
                     GameObject.FindWithTag ("MainCamera").GetComponent<CameraController> ().gravity = true;
                 }
                 //if spawn location is on ceiling, gravity is up
                 else
                 {
-                    Physics.gravity = new Vector3 (0, 9.8f, 0);
+                    if (gravity)
+                        SwitchGravity ();
                     GameObject.FindWithTag ("MainCamera").GetComponent<CameraController> ().gravity = false;
                 }
                 transform.position = spawnLocation;
